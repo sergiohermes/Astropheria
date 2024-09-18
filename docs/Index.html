@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astropheria | Representação Visual</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .gear {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .gear:hover {
+      transform: scale(1.2);
+    }
+
+    .gear:hover .tooltip {
+      display: block;
+    }
+
+    .tooltip {
+      display: none;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 5px;
+      border-radius: 5px;
+      top: 110px;
+      left: 0;
+      width: 200px;
+    }
+
+    svg {
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const data = [
+    {"id": 1, "name": "Lua", "diâmetro": 9, "dentes": 15, "passo": 1.88, "color": "#999999"},
+    {"id": 2, "name": "Mercúrio", "diâmetro": 16, "dentes": 24, "passo": 2.09, "color": "#b3b3b3"},
+    {"id": 3, "name": "Vênus", "diâmetro": 22, "dentes": 30, "passo": 2.09, "color": "#ffcc00"},
+    {"id": 4, "name": "Marte", "diâmetro": 30, "dentes": 38, "passo": 2.48, "color": "#ff0000"},
+    {"id": 5, "name": "Júpiter", "diâmetro": 35, "dentes": 42, "passo": 2.61, "color": "#ffaa00"},
+    {"id": 6, "name": "Saturno", "diâmetro": 46, "dentes": 53, "passo": 2.72, "color": "#ffdd99"},
+    {"id": 7, "name": "Urano", "diâmetro": 50, "dentes": 58, "passo": 2.80, "color": "#33ccff"},
+    {"id": 8, "name": "Netuno", "diâmetro": 65, "dentes": 64, "passo": 3.18, "color": "#3333ff"},
+    {"id": 9, "name": "Sol", "diâmetro": 78, "dentes": 70, "passo": 3.31, "color": "#ffff00"},
+    {"id": 10, "name": "Cometa", "diâmetro": 85, "dentes": 80, "passo": 3.52, "color": "#66ff66"},
+    {"id": 11, "name": "Estrela", "diâmetro": 96, "dentes": 100, "passo": 3.78, "color": "#ffcc33"},
+    {"id": 12, "name": "Lua Cheia", "diâmetro": 110, "dentes": 120, "passo": 4.05, "color": "#f0f0f0"},
+    {"id": 13, "name": "Planeta X", "diâmetro": 120, "dentes": 140, "passo": 4.32, "color": "#aa00ff"},
+    {"id": 14, "name": "Asteroide", "diâmetro": 127, "dentes": 223, "passo": 3.57, "color": "#cccccc"},
+    {"id": 15, "name": "Sol Estendido", "diâmetro": 135, "dentes": 250, "passo": 4.15, "color": "#ffff99"},
+    {"id": 16, "name": "Plutão", "diâmetro": 50, "dentes": 60, "passo": 2.60, "color": "#0000cc"},
+    {"id": 17, "name": "Estrela Cadente", "diâmetro": 60, "dentes": 65, "passo": 3.00, "color": "#ff9933"},
+    {"id": 18, "name": "Galáxia", "diâmetro": 140, "dentes": 270, "passo": 5.00, "color": "#6633cc"},
+    {"id": 19, "name": "Nebulosa", "diâmetro": 160, "dentes": 290, "passo": 5.20, "color": "#ff66cc"},
+    {"id": 20, "name": "Cinturão de Asteroides", "diâmetro": 180, "dentes": 310, "passo": 5.50, "color": "#cccc00"}
+  ];
+
+  window.onload = function() {
+    const body = document.body;
+
+    data.forEach(item => {
+      const gear = document.createElement('div');
+      gear.className = 'gear';
+      gear.style.color = item.color;
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'tooltip';
+      tooltip.innerHTML = `
+        <strong>Astro:</strong> ${item.name}<br>
+        <strong>Diâmetro:</strong> ${item.diâmetro} mm<br>
+        <strong>Número de Dentes:</strong> ${item.dentes}<br>
+        <strong>Passo:</strong> ${item.passo} mm
+      `;
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("width", "100");
+      svg.setAttribute("height", "100");
+      svg.setAttribute("viewBox", "0 0 100 100");
+
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", "50");
+      circle.setAttribute("cy", "50");
+      circle.setAttribute("r", "40");
+      svg.appendChild(circle);
+
+      gear.appendChild(svg);
+      gear.appendChild(tooltip);
+      body.appendChild(gear);
+    });
+  }
+</script>
+
+</body>
+  </html>
